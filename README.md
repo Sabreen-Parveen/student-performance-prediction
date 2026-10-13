@@ -2,7 +2,7 @@
 
 Predicting secondary school students' exam scores from demographic, family and lifestyle characteristics, by comparing five supervised learning models with 10-fold cross-validation in R.
 
-[Open in Google Colab](https://colab.research.google.com/drive/1-Jrqji_LW5oNn0KSM_eQfqjvueQmhBaN) · [View the full report](report.html)
+[View the full report](report.html) · [Analysis script](predict_score.R)
 
 ## Overview
 
@@ -58,7 +58,7 @@ The data describe students from two Portuguese secondary schools and are based o
 ## Repository structure
 
 ```
-├── Predict_Score.ipynb   # Full analysis (R notebook): EDA, models, cross-validation
+├── predict_score.R       # Full analysis: EDA, models, cross-validation, predictions
 ├── report.html           # Rendered report with all outputs and figures
 ├── predictions.rds       # Final predictions for the 79 test students
 └── data/
@@ -68,14 +68,26 @@ The data describe students from two Portuguese secondary schools and are based o
 
 ## How to run
 
-Requirements: R (≥ 4.1) and Jupyter with the R kernel ([IRkernel](https://github.com/IRkernel/IRkernel)), or Google Colab with an R runtime.
+Requirements: R (≥ 4.1). Install the packages once:
 
 ```r
 install.packages(c("tidyverse", "rpart", "rpart.plot", "randomForest", "FNN", "xgboost"))
 ```
 
-Then open `Predict_Score.ipynb` and run all cells from the repository root. The notebook rewrites `predictions.rds`. All random steps use fixed seeds, so the results are reproducible.
+Then, from the repository root, either run the analysis:
+
+```bash
+Rscript predict_score.R
+```
+
+or render it to the HTML report (needs `rmarkdown`):
+
+```r
+rmarkdown::render("predict_score.R", output_file = "report.html")
+```
+
+Both write `predictions.rds`. All random steps use fixed seeds, so the results are reproducible.
 
 ## Tech stack
 
-R · tidyverse · ggplot2 · rpart · randomForest · FNN · xgboost · Jupyter
+R · tidyverse · ggplot2 · rpart · randomForest · FNN · xgboost · R Markdown
